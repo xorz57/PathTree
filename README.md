@@ -46,7 +46,7 @@ int main() {
 
 ## Output
 
-```
+```console
 /
   bin
   etc
