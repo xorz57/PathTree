@@ -1,5 +1,7 @@
 # PathTree
 
+## Example
+
 ```cpp
 #include "PathTree.hpp"
 
@@ -40,4 +42,47 @@ int main() {
     std::cout << std::boolalpha << pathTree.containsPath("/usr/local/bin") << std::endl;
     return 0;
 }
+```
+
+## Output
+
+```
+/
+  bin
+  etc
+  sbin
+  usr
+    bin
+    include
+    lib
+    local
+      bin
+      lib
+      man
+      sbin
+      share
+    share
+      man
+  var
+    cache
+    lib
+    lock
+    log
+    opt
+    spool
+      cron
+      cups
+      mail
+      tmp
+  dev
+  home
+  lib
+  mnt
+  opt
+  proc
+  root
+true
+true
+true
+true
 ```
