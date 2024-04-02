@@ -69,10 +69,9 @@ private:
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
-                    current->children.begin(),
-                    current->children.end(),
-                    [&](const std::shared_ptr<Node> &child){ return child->name == name; }
-                );
+                        current->children.begin(),
+                        current->children.end(),
+                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
                 if (it == current->children.end()) {
                     auto component = std::make_shared<Node>(name);
                     current->children.push_back(component);
@@ -92,10 +91,9 @@ private:
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
-                    current->children.begin(),
-                    current->children.end(),
-                    [&](const std::shared_ptr<Node> &child){ return child->name == name; }
-                );
+                        current->children.begin(),
+                        current->children.end(),
+                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
                 if (it != current->children.end()) {
                     parent = current;
                     current = *it;
@@ -105,12 +103,11 @@ private:
             }
         }
         parent->children.erase(
-            std::remove_if(
-                parent->children.begin(),
-                parent->children.end(),
-                [&](const std::shared_ptr<Node> &child){ return child->name == current->name; }),
-                parent->children.end()
-            );
+                std::remove_if(
+                        parent->children.begin(),
+                        parent->children.end(),
+                        [&](const std::shared_ptr<Node> &child) { return child->name == current->name; }),
+                parent->children.end());
     }
 
     bool containsPathHelper(const std::shared_ptr<Node> &root, const std::string &path) const {
@@ -120,10 +117,9 @@ private:
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
-                    current->children.begin(),
-                    current->children.end(),
-                    [&](const std::shared_ptr<Node> &child){ return child->name == name; }
-                );
+                        current->children.begin(),
+                        current->children.end(),
+                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
                 if (it == current->children.end()) {
                     return false;
                 } else {
@@ -143,7 +139,7 @@ private:
             std::cout << "  ";
         }
         std::cout << root->name << std::endl;
-        for (const std::shared_ptr<Node> &child : root->children) {
+        for (const std::shared_ptr<Node> &child: root->children) {
             show(child, depth + 1);
         }
     }
