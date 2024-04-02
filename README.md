@@ -1,5 +1,7 @@
 # PathTree
 
+[![Build](https://github.com/xorz57/PathTree/actions/workflows/Build.yml/badge.svg)](https://github.com/xorz57/PathTree/actions/workflows/Build.yml)
+
 ## Example
 
 ```cpp
