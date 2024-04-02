@@ -5,7 +5,7 @@
 ## Example
 
 ```cpp
-#include "PathTree.hpp"
+#include "PathTree/PathTree.hpp"
 
 int main() {
     PathTree pathTree;
