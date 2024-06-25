@@ -35,15 +35,15 @@ class path_tree_t {
 public:
     path_tree_t() = default;
 
-    void addPath(const std::string &path) {
+    void add_path(const std::string &path) {
         add_path_helper(mRoot, path);
     }
 
-    void removePath(const std::string &path) {
+    void remove_path(const std::string &path) {
         remove_path_helper(mRoot, path);
     }
 
-    bool containsPath(const std::string &path) const {
+    bool contains_path(const std::string &path) const {
         return contains_path_helper(mRoot, path);
     }
 
