@@ -31,24 +31,24 @@
 #include <string>
 #include <vector>
 
-class PathTree {
+class path_tree_t {
 public:
-    PathTree() = default;
+    path_tree_t() = default;
 
     void addPath(const std::string &path) {
-        addPathHelper(mRoot, path);
+        add_path_helper(mRoot, path);
     }
 
     void removePath(const std::string &path) {
-        removePathHelper(mRoot, path);
+        remove_path_helper(mRoot, path);
     }
 
     bool containsPath(const std::string &path) const {
-        return containsPathHelper(mRoot, path);
+        return contains_path_helper(mRoot, path);
     }
 
     void clear() {
-        clearHelper(mRoot);
+        clear_helper(mRoot);
     }
 
     void show() const {
@@ -62,7 +62,7 @@ private:
         std::string name;
     };
 
-    void addPathHelper(const std::shared_ptr<Node> &root, const std::string &path) const {
+    void add_path_helper(const std::shared_ptr<Node> &root, const std::string &path) const {
         std::istringstream iss(path);
         std::string name;
         std::shared_ptr<Node> current = root;
@@ -83,7 +83,7 @@ private:
         }
     }
 
-    void removePathHelper(const std::shared_ptr<Node> &root, const std::string &path) {
+    void remove_path_helper(const std::shared_ptr<Node> &root, const std::string &path) {
         std::istringstream iss(path);
         std::string name;
         std::shared_ptr<Node> current = root;
@@ -110,7 +110,7 @@ private:
                 parent->children.end());
     }
 
-    bool containsPathHelper(const std::shared_ptr<Node> &root, const std::string &path) const {
+    bool contains_path_helper(const std::shared_ptr<Node> &root, const std::string &path) const {
         std::istringstream iss(path);
         std::string name;
         std::shared_ptr<Node> current = root;
@@ -130,7 +130,7 @@ private:
         return true;
     }
 
-    void clearHelper(std::shared_ptr<Node> root) const {
+    void clear_helper(std::shared_ptr<Node> root) const {
         root->children.clear();
     }
 
