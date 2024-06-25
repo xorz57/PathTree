@@ -56,24 +56,24 @@ public:
     }
 
 private:
-    struct Node {
-        explicit Node(const std::string &name) : name(name) {}
-        std::vector<std::shared_ptr<Node>> children;
+    struct node_t {
+        explicit node_t(const std::string &name) : name(name) {}
+        std::vector<std::shared_ptr<node_t>> children;
         std::string name;
     };
 
-    void add_path_helper(const std::shared_ptr<Node> &root, const std::string &path) const {
+    void add_path_helper(const std::shared_ptr<node_t> &root, const std::string &path) const {
         std::istringstream iss(path);
         std::string name;
-        std::shared_ptr<Node> current = root;
+        std::shared_ptr<node_t> current = root;
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
                         current->children.begin(),
                         current->children.end(),
-                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
+                        [&](const std::shared_ptr<node_t> &child) { return child->name == name; });
                 if (it == current->children.end()) {
-                    auto component = std::make_shared<Node>(name);
+                    auto component = std::make_shared<node_t>(name);
                     current->children.push_back(component);
                     current = component;
                 } else {
@@ -83,17 +83,17 @@ private:
         }
     }
 
-    void remove_path_helper(const std::shared_ptr<Node> &root, const std::string &path) {
+    void remove_path_helper(const std::shared_ptr<node_t> &root, const std::string &path) {
         std::istringstream iss(path);
         std::string name;
-        std::shared_ptr<Node> current = root;
-        std::shared_ptr<Node> parent = nullptr;
+        std::shared_ptr<node_t> current = root;
+        std::shared_ptr<node_t> parent = nullptr;
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
                         current->children.begin(),
                         current->children.end(),
-                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
+                        [&](const std::shared_ptr<node_t> &child) { return child->name == name; });
                 if (it != current->children.end()) {
                     parent = current;
                     current = *it;
@@ -106,20 +106,20 @@ private:
                 std::remove_if(
                         parent->children.begin(),
                         parent->children.end(),
-                        [&](const std::shared_ptr<Node> &child) { return child->name == current->name; }),
+                        [&](const std::shared_ptr<node_t> &child) { return child->name == current->name; }),
                 parent->children.end());
     }
 
-    bool contains_path_helper(const std::shared_ptr<Node> &root, const std::string &path) const {
+    bool contains_path_helper(const std::shared_ptr<node_t> &root, const std::string &path) const {
         std::istringstream iss(path);
         std::string name;
-        std::shared_ptr<Node> current = root;
+        std::shared_ptr<node_t> current = root;
         while (std::getline(iss, name, '/')) {
             if (!name.empty()) {
                 auto it = std::find_if(
                         current->children.begin(),
                         current->children.end(),
-                        [&](const std::shared_ptr<Node> &child) { return child->name == name; });
+                        [&](const std::shared_ptr<node_t> &child) { return child->name == name; });
                 if (it == current->children.end()) {
                     return false;
                 } else {
@@ -130,19 +130,19 @@ private:
         return true;
     }
 
-    void clear_helper(std::shared_ptr<Node> root) const {
+    void clear_helper(std::shared_ptr<node_t> root) const {
         root->children.clear();
     }
 
-    void show(std::shared_ptr<Node> root, unsigned int depth) const {
+    void show(std::shared_ptr<node_t> root, unsigned int depth) const {
         for (unsigned int i = 0; i < depth; ++i) {
             std::cout << "  ";
         }
         std::cout << root->name << std::endl;
-        for (const std::shared_ptr<Node> &child: root->children) {
+        for (const std::shared_ptr<node_t> &child: root->children) {
             show(child, depth + 1);
         }
     }
 
-    std::shared_ptr<Node> mRoot = std::make_shared<Node>("/");
+    std::shared_ptr<node_t> mRoot = std::make_shared<node_t>("/");
 };
