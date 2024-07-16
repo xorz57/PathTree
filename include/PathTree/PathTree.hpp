@@ -36,23 +36,23 @@ public:
     path_tree_t() = default;
 
     void add_path(const std::string &path) {
-        add_path_helper(mRoot, path);
+        add_path_helper(m_root, path);
     }
 
     void remove_path(const std::string &path) {
-        remove_path_helper(mRoot, path);
+        remove_path_helper(m_root, path);
     }
 
     bool contains_path(const std::string &path) const {
-        return contains_path_helper(mRoot, path);
+        return contains_path_helper(m_root, path);
     }
 
     void clear() {
-        clear_helper(mRoot);
+        clear_helper(m_root);
     }
 
     void show() const {
-        show(mRoot, 0);
+        show(m_root, 0);
     }
 
 private:
@@ -144,5 +144,5 @@ private:
         }
     }
 
-    std::shared_ptr<node_t> mRoot = std::make_shared<node_t>("/");
+    std::shared_ptr<node_t> m_root = std::make_shared<node_t>("/");
 };
